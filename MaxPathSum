@@ -1,0 +1,35 @@
+import java.util.*;
+
+public class MaxPathSum{
+	static int max(int x,int y){
+		return (x>y)?x:y;
+	}
+
+	public static void main(String[] args){
+		int i,j;
+		int triVal[][] = new int[100][100];
+		int sum[][] = new int[100][100];
+		Scanner val = new Scanner(System.in);
+		for(i=0;i<100;i++)
+		{
+			for(j=0;j<=i;j++)
+			{
+				triVal[i][j] = val.nextInt();
+			}
+		}
+		
+		for(i=0;i<100;i++)
+		{
+			sum[99][i]=triVal[99][i];
+		}
+
+		for(i=98;i>=0;i--)
+		{
+			for(j=0;j<=i;j++)
+			{
+				sum[i][j] = max(sum[i+1][j]+triVal[i][j],sum[i+1][j+1]+triVal[i][j]);
+			}
+		}
+		System.out.println("Maximum Path Sum is "+sum[0][0]);
+	}
+}
